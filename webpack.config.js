@@ -14,6 +14,10 @@ const common = {
     app: PATHS.app
   },
 
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
+
   output: {
     path: PATHS.build,
     filename: 'bundle.js'
@@ -24,6 +28,16 @@ const common = {
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader',
+        include: PATHS.app
+      },
+
+      {
+        test: /\.jsx?$/,
+        loader: 'babel',
+        query: {
+          cacheDirectory: true,
+          presets: ['react', 'es2015']
+        },
         include: PATHS.app
       }
     ]
