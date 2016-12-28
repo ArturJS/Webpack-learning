@@ -1,13 +1,55 @@
 import React from 'react';
 import Note from './Note.jsx';
+import uuid from 'node-uuid';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      notes: [
+        {
+          id: uuid.v4(),
+          task: 'Learn Webpack'
+        },
+        {
+          id: uuid.v4(),
+          task: 'Learn React'
+        },
+        {
+          id: uuid.v4(),
+          task: 'Do something'
+        }
+      ]
+    };
+
+    this.addNote = this.addNote.bind(this);
+  }
+
+  addNote() {
+    this.setState({
+      notes: this.state.notes.concat({
+        id: uuid.v4(),
+        task: 'New task'
+      })
+    })
+  };
+
   render() {
+    const notes = this.state.notes;
+
     return (
       <div>
-        <Note />
-        <Note />
-        <Note />
+        <button onClick={this.addNote}>+</button>
+        <ul>
+          {
+            notes.map(note =>
+              <li key={note.id}>
+                <Note task={note.task} />
+              </li>
+            )
+          }
+        </ul>
       </div>
     );
   }
