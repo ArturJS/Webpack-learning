@@ -7,8 +7,8 @@ node_modules
 coverage
 
 # production
-build
-
+build/*
+!build/index.html
 # misc
 .DS_Store
 .env
