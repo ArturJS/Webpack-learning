@@ -24,6 +24,7 @@ export default class App extends React.Component {
     };
 
     this.addNote = this.addNote.bind(this);
+    this.onNoteDelete = this.onNoteDelete.bind(this);
     this.onNoteEdit = this.onNoteEdit.bind(this);
   }
 
@@ -35,6 +36,15 @@ export default class App extends React.Component {
       })
     })
   };
+
+  onNoteDelete(id, e) {
+    //Avoid bubbling to edit
+    e.stopPropagation();
+
+    this.setState({
+      notes: this.state.notes.filter(note => note.id !== id)
+    });
+  }
 
   onNoteEdit(id, task) {
     if (!task.trim()) {
@@ -57,7 +67,10 @@ export default class App extends React.Component {
     return (
       <div>
         <button onClick={this.addNote}>+</button>
-        <Notes notes={notes} onEdit={this.onNoteEdit}/>
+        <Notes notes={notes}
+               onEdit={this.onNoteEdit}
+               onDelete={this.onNoteDelete}
+        />
       </div>
     );
   }

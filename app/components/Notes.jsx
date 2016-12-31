@@ -1,13 +1,13 @@
 import React from 'react';
 import Note from './Note';
 
-export default ({notes, onEdit}) => {
+export default ({notes, onEdit, onDelete}) => {
   return (
     <ul>
       {
         notes.map(note =>
           <li key={note.id}>
-            <Note note={note} onEdit={onEdit}/>
+            <Note note={note} onEdit={onEdit} onDelete={onDelete}/>
           </li>
         )
       }

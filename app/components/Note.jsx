@@ -11,6 +11,7 @@ export default class Note extends React.Component {
     this.edit = this.edit.bind(this);
     this.finishEdit = this.finishEdit.bind(this);
     this.checkEnter = this.checkEnter.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
   }
 
   render() {
@@ -31,13 +32,28 @@ export default class Note extends React.Component {
   }
 
   renderNote() {
-    return <div onClick={this.edit}>{this.props.note.task}</div>
+    const onDelete = this.deleteNote;
+
+    return (
+      <div onClick={this.edit}>
+        <span>{this.props.note.task}</span>
+        {
+          onDelete
+            ? <button onClick={onDelete}>&times;</button>
+            : null
+        }
+      </div>
+    );
   }
 
   edit() {
     this.setState({
       isEditing: true
     });
+  }
+
+  deleteNote(e) {
+    this.props.onDelete(this.props.note.id, e);
   }
 
   finishEdit(e) {
