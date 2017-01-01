@@ -66,7 +66,8 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <button onClick={this.addNote}>+</button>
+        <button onClick={this.addNote}
+                className="add-note">+</button>
         <Notes notes={notes}
                onEdit={this.onNoteEdit}
                onDelete={this.onNoteDelete}

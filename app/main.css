@@ -1,3 +1,44 @@
 body {
   background-color: #fff8dc;
+  font-family: sans-serif;
+}
+
+.notes {
+  max-width: 150px;
+  list-style: none;
+  margin: 10px;
+  padding-left: 0;
+}
+
+.note {
+  background-color: #fdfdfd;
+  position: relative;
+  border: 1px solid #ccc;
+  word-break: break-word;
+  padding-right: 20px;
+  height: 20px;
+}
+
+.note input[type="text"] {
+  display: block;
+  width: 100%;
+}
+
+.note .delete-note {
+  background-color: #fdfdfd;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.note .delete-note:hover {
+  background-color: #f1f0f0;
+}
+
+.add-note {
+  background-color: #fdfdfd;
+  border: 1px solid #ccc;
 }

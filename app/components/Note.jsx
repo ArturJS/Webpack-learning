@@ -39,7 +39,7 @@ export default class Note extends React.Component {
         <span>{this.props.note.task}</span>
         {
           onDelete
-            ? <button onClick={onDelete}>&times;</button>
+            ? <button onClick={onDelete} className="delete-note">&times;</button>
             : null
         }
       </div>

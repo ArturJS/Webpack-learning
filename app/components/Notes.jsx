@@ -3,10 +3,11 @@ import Note from './Note';
 
 export default ({notes, onEdit, onDelete}) => {
   return (
-    <ul>
+    <ul className="notes">
       {
         notes.map(note =>
-          <li key={note.id}>
+          <li key={note.id}
+              className="note">
             <Note note={note} onEdit={onEdit} onDelete={onDelete}/>
           </li>
         )
