@@ -33,6 +33,12 @@ const common = {
       },
 
       {
+        test: /\.scss$/,
+        loaders: ["style-loader", "css-loader", "sass-loader"],
+        include: PATHS.app
+      },
+
+      {
         test: /\.jsx?$/,
         loader: 'babel',
         query: {
