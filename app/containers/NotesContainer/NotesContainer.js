@@ -6,7 +6,20 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as noteActions from '../../actions/notes-actions';
 
-class NotesContainer extends React.Component {
+function mapStateToProps(state, props) {
+  return {
+    notesList: state.notesList
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(noteActions, dispatch)
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
+export default class NotesContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -62,17 +75,3 @@ class NotesContainer extends React.Component {
     );
   }
 }
-
-function mapStateToProps(state, props) {
-  return {
-    notesList: state.notesList
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(noteActions, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NotesContainer);

@@ -8,10 +8,6 @@ export default class Note extends React.Component {
       isEditing: false
     };
 
-    this.edit = this.edit.bind(this);
-    this.finishEdit = this.finishEdit.bind(this);
-    this.checkEnter = this.checkEnter.bind(this);
-    this.deleteNote = this.deleteNote.bind(this);
   }
 
   render() {
@@ -46,19 +42,19 @@ export default class Note extends React.Component {
     );
   }
 
-  edit() {
+  edit = () => {
     this.setState({
       isEditing: true
     });
-  }
+  };
 
-  deleteNote(e) {
+  deleteNote = (e) => {
     e.stopPropagation();
 
     this.props.onDelete(this.props.note);
-  }
+  };
 
-  finishEdit(e) {
+  finishEdit = (e) => {
     const value = e.target.value;
 
     if (this.props.onUpdate) {
@@ -69,11 +65,11 @@ export default class Note extends React.Component {
     this.setState({
       isEditing: false
     });
-  }
+  };
 
-  checkEnter(e) {
+  checkEnter = (e) => {
     if (e.key === 'Enter') {
       this.finishEdit(e);
     }
-  }
+  };
 }

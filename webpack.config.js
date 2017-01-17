@@ -40,11 +40,10 @@ const common = {
 
       {
         test: /\.jsx?$/,
-        loader: 'babel',
-        query: {
-          cacheDirectory: true,
-          presets: ['react', 'es2015']
-        },
+        loaders: [
+          'react-hot',
+          'babel?presets[]=es2015,presets[]=react,presets[]=stage-1&plugins[]=transform-decorators-legacy,plugins[]=transform-class-properties'
+        ],
         include: PATHS.app
       }
     ]
