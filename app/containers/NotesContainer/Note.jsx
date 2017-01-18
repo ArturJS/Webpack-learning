@@ -14,7 +14,7 @@ export default class Note extends React.Component {
         <EditableText isRequired={true} text={note.task} onUpdate={this.onUpdate} />
         {
           onDelete
-            ? <button onClick={onDelete} className="delete-note">&times;</button>
+            ? <button onClick={this.deleteNote} className="delete-note">&times;</button>
             : null
         }
       </div>
