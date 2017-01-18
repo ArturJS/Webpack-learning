@@ -22,42 +22,21 @@ function mapDispatchToProps(dispatch) {
 export default class NotesContainer extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      notes: [
-        {
-          id: uuid.v4(),
-          task: 'Learn Webpack'
-        },
-        {
-          id: uuid.v4(),
-          task: 'Learn React'
-        },
-        {
-          id: uuid.v4(),
-          task: 'Do something'
-        }
-      ]
-    };
-
-    this.addNote = this.addNote.bind(this);
-    this.onNoteDelete = this.onNoteDelete.bind(this);
-    this.onNoteUpdate = this.onNoteUpdate.bind(this);
   }
 
-  addNote() {
+  addNote = () => {
     this.props.actions.addNote({task: 'New task'});
   };
 
-  onNoteDelete(note) {
+  onNoteDelete = (note) => {
     this.props.actions.removeNote(note);
-  }
+  };
 
-  onNoteUpdate(note) {
+  onNoteUpdate = (note) => {
     if (!note.task.trim()) return;
 
     this.props.actions.updateNote(note);
-  }
+  };
 
   render() {
     const {notesList} = this.props;

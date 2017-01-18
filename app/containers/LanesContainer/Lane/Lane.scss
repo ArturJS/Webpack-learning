@@ -1,10 +1,8 @@
-@import "../../styles/_mixins";
-
 .lane {
   display: inline-block;
   background-color: #FFFFFF;
   width: 200px;
-  margin-right: 30px;
+  margin: 0 30px 30px 0;
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2);
 
   &-header {
