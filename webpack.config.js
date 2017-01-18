@@ -16,7 +16,7 @@ const common = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx']
   },
 
   output: {
@@ -41,8 +41,8 @@ const common = {
       {
         test: /\.jsx?$/,
         loaders: [
-          'react-hot',
-          'babel?presets[]=es2015,presets[]=react,presets[]=stage-1&plugins[]=transform-decorators-legacy,plugins[]=transform-class-properties'
+          'react-hot-loader',
+          'babel-loader?presets[]=es2015,presets[]=react,presets[]=stage-1&plugins[]=transform-decorators-legacy,plugins[]=transform-class-properties'
         ],
         include: PATHS.app
       }
@@ -59,10 +59,9 @@ if (TARGET === 'start' || !TARGET) {
       historyApiFallback: true,
       hot: true,
       inline: true,
-      progress: true,
       stats: 'errors-only',
       host: process.env.HOST,
-      port: process.env.PORT
+      port: 3000//process.env.PORT
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
