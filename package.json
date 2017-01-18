@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --open --progress --watch-poll --inline --hot",
+    "start": "webpack-dev-server --open --progress --watch-poll --inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -20,7 +20,9 @@
     "babel-preset-stage-0": "6.16.0",
     "babel-preset-stage-1": "6.16.0",
     "babel-preset-stage-2": "6.18.0",
+    "bootstrap-sass": "3.3.7",
     "css-loader": "0.26.1",
+    "file-loader": "0.9.0",
     "lodash": "4.17.4",
     "node-uuid": "1.4.7",
     "react": "15.4.1",
@@ -29,7 +31,9 @@
     "react-redux": "5.0.2",
     "redux": "3.6.0",
     "redux-undo": "0.6.1",
-    "style-loader": "0.13.1"
+    "reselect": "2.5.4",
+    "style-loader": "0.13.1",
+    "url-loader": "0.5.7"
   },
   "devDependencies": {
     "babel-core": "6.21.0",

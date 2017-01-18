@@ -45,7 +45,9 @@ const common = {
           'babel-loader?presets[]=es2015,presets[]=react,presets[]=stage-1&plugins[]=transform-decorators-legacy,plugins[]=transform-class-properties'
         ],
         include: PATHS.app
-      }
+      },
+
+      { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url-loader?limit=10000' }
     ]
   }
 };
@@ -61,7 +63,7 @@ if (TARGET === 'start' || !TARGET) {
       inline: true,
       stats: 'errors-only',
       host: process.env.HOST,
-      port: 3000//process.env.PORT
+      port: process.env.PORT || 3000
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),

@@ -1,38 +1,17 @@
 import React from 'react';
+import EditableText from '../../components/EditableText/EditableText';
 
 export default class Note extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      isEditing: false
-    };
-
   }
 
   render() {
-    if (this.state.isEditing) {
-      return this.renderEdit();
-    }
-
-    return this.renderNote()
-  }
-
-  renderEdit() {
-    return <input type="text"
-                  ref={(e)=>e ? e.selectionStart = this.props.note.task.length : null}
-                  autoFocus={true}
-                  defaultValue={this.props.note.task}
-                  onBlur={this.finishEdit}
-                  onKeyPress={this.checkEnter}/>;
-  }
-
-  renderNote() {
-    const onDelete = this.deleteNote;
+    const {note, onDelete} = this.props;
 
     return (
-      <div onClick={this.edit}>
-        <span>{this.props.note.task}</span>
+      <div>
+        <EditableText isRequired={true} text={note.task} onUpdate={this.onUpdate} />
         {
           onDelete
             ? <button onClick={onDelete} className="delete-note">&times;</button>
@@ -42,34 +21,16 @@ export default class Note extends React.Component {
     );
   }
 
-  edit = () => {
-    this.setState({
-      isEditing: true
-    });
-  };
-
   deleteNote = (e) => {
     e.stopPropagation();
 
     this.props.onDelete(this.props.note);
   };
 
-  finishEdit = (e) => {
-    const value = e.target.value;
-
+  onUpdate = (newTask) => {
     if (this.props.onUpdate) {
-      let note = Object.assign({}, this.props.note, {task: value});
+      let note = Object.assign({}, this.props.note, {task: newTask});
       this.props.onUpdate(note);
-    }
-
-    this.setState({
-      isEditing: false
-    });
-  };
-
-  checkEnter = (e) => {
-    if (e.key === 'Enter') {
-      this.finishEdit(e);
     }
   };
 }

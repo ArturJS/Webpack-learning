@@ -1,5 +1,6 @@
 import React from 'react';
 import NotesContainer from './containers/NotesContainer';
+import Lane from './components/Lane/Lane';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -8,7 +9,10 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <NotesContainer />
+      <div>
+        <NotesContainer />
+        <Lane />
+      </div>
     );
   }
 }

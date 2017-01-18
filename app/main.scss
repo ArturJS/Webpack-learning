@@ -1,5 +1,8 @@
+@import "./styles/_vendor";
+@import "./styles/_mixins";
+
 body {
-  background-color: #fff8dc;
+  background-color: #FFFFFF;
   font-family: sans-serif;
 }
 
@@ -14,9 +17,9 @@ body {
   background-color: #fdfdfd;
   position: relative;
   border: 1px solid #ccc;
-  word-break: break-word;
+  word-break: break-all;
   padding-right: 20px;
-  height: 20px;
+  min-height: 20px;
 }
 
 .note input[type="text"] {

@@ -1,0 +1,11 @@
+.editable-text-cnt {
+  .has-error {
+    .editable-input {
+      outline: 1px solid #FF0000;
+    }
+  }
+
+  .editable-input {
+    width: 100%;
+  }
+}
