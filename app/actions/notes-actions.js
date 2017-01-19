@@ -1,10 +1,10 @@
 import * as types from './action-types';
 import uuid from 'node-uuid';
 
-export const addNote = (note) => {
+export const addNote = (note, laneId) => {
   return {
     type: types.ADD_NOTE,
-    note: Object.assign({}, note, {id: uuid.v4()})
+    note: Object.assign({}, note, {id: uuid.v4(), laneId: laneId})
   };
 };
 

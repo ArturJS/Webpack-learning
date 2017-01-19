@@ -1,6 +1,5 @@
 import React from 'react';
 import Notes from './Notes';
-import uuid from 'node-uuid';
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -24,10 +23,6 @@ export default class NotesContainer extends React.Component {
     super(props);
   }
 
-  addNote = () => {
-    this.props.actions.addNote({task: 'New task'});
-  };
-
   onNoteDelete = (note) => {
     this.props.actions.removeNote(note);
   };
@@ -39,18 +34,15 @@ export default class NotesContainer extends React.Component {
   };
 
   render() {
-    const {notesList} = this.props;
+    let {notesList, laneId} = this.props;
+
+    notesList = notesList.filter(note => note.laneId === laneId);
 
     return (
-      <div>
-        <button onClick={this.addNote}
-                className="add-note">+
-        </button>
-        <Notes notes={notesList}
-               onUpdate={this.onNoteUpdate}
-               onDelete={this.onNoteDelete}
-        />
-      </div>
+      <Notes notes={notesList}
+             onUpdate={this.onNoteUpdate}
+             onDelete={this.onNoteDelete}
+      />
     );
   }
 }

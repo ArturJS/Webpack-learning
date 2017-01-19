@@ -6,7 +6,8 @@ export default class Lanes extends Component {
   static propTypes = {
     lanesList: PropTypes.array.isRequired,
     onUpdate: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired
+    onDelete: PropTypes.func.isRequired,
+    onAddTask: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -14,13 +15,13 @@ export default class Lanes extends Component {
   }
 
   render() {
-    let {lanesList, onUpdate, onDelete} = this.props;
+    let {lanesList, onUpdate, onDelete, onAddTask} = this.props;
 
     return (
       <div className="lanes-list">
         {
           lanesList.map(lane =>
-            <Lane key={lane.id} lane={lane} onDelete={onDelete} onUpdate={onUpdate} />
+            <Lane key={lane.id} lane={lane} onDelete={onDelete} onUpdate={onUpdate} onAddTask={onAddTask} />
           )
         }
       </div>
