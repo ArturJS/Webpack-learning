@@ -108,10 +108,19 @@ export default class Lane extends Component {
   }
 
   render() {
-    let {lane, onAddTask, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
+    let {
+      lane,
+      onAddTask,
+      isDragging,
+      connectDragSource,
+      connectDropTarget,
+      connectDragPreview
+    } = this.props;
+
+    let opacity = isDragging ? 0.5 : 1;
 
     return connectDropTarget(connectDragPreview(
-      <div className="lane">
+      <div className="lane" style={{opacity}}>
         {
           connectDragSource(
             <div className="lane-drag-source">
