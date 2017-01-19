@@ -7,6 +7,12 @@ import * as laneActions from '../../actions/lane-antions';
 import * as noteActions from '../../actions/notes-actions';
 import Lanes from './Lanes/Lanes';
 
+import {DragDropContext} from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+
+
+import update from 'react/lib/update';
+
 function mapStateToProps(state, props) {
   return {
     lanesList: state.lanesList
@@ -20,6 +26,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
+@DragDropContext(HTML5Backend)
 export default class LanesContainer extends Component {
   static propTypes = {
     lanesList: PropTypes.array.isRequired
@@ -27,10 +34,20 @@ export default class LanesContainer extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      lanesList: []
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      lanesList: nextProps.lanesList
+    });
   }
 
   render() {
-    const {lanesList} = this.props;
+    const {lanesList} = this.state;
 
     return (
       <div className="lanes-container">
@@ -41,10 +58,31 @@ export default class LanesContainer extends Component {
                onUpdate={this.onUpdate}
                onDelete={this.onDelete}
                onAddTask={this.onAddTask}
+               onMoveLane={this.onMoveLane}
+               onEndMoveLane={this.onEndMoveLane}
         />
       </div>
     );
   }
+
+  onMoveLane = (dragIndex, hoverIndex) => {
+    const { lanesList } = this.state;
+    const dragLane = lanesList[dragIndex];
+
+    this.setState(update(this.state, {
+      lanesList: {
+        $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, dragLane]
+        ]
+      }
+    }));
+  };
+
+  onEndMoveLane = (dragIndex, hoverIndex) => {
+    const { lanesList } = this.state;
+    this.props.actions.updateLanesList(lanesList);
+  };
 
   onAdd = () => {
     this.props.actions.addLane({title: 'New lane'});

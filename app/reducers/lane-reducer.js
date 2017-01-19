@@ -23,6 +23,10 @@ export default (state = [], action) => {
       }
 
       return state;
+    case types.UPDATE_LANES_LIST:
+      console.log('\nEND_MOVE_LANE');
+      console.log(action);
+      return [...action.lanesList];
     default:
       return state;
   }

@@ -21,3 +21,10 @@ export const updateLane = (lane) => {
     lane: lane
   };
 };
+
+export const updateLanesList = (lanesList) => {
+  return {
+    type: types.UPDATE_LANES_LIST,
+    lanesList
+  };
+};
