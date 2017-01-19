@@ -83,6 +83,7 @@ const laneTarget = {
 }))
 @DragSource(ItemTypes.LANE, laneSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
+  connectDragPreview: connect.dragPreview(),
   isDragging: monitor.isDragging()
 }))
 export default class Lane extends Component {
@@ -95,6 +96,7 @@ export default class Lane extends Component {
     onEndMoveLane: PropTypes.func.isRequired,
 
     connectDragSource: PropTypes.func.isRequired,
+    connectDragPreview: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
     isDragging: PropTypes.bool.isRequired,
@@ -106,10 +108,17 @@ export default class Lane extends Component {
   }
 
   render() {
-    let {lane, onAddTask, connectDragSource, connectDropTarget} = this.props;
+    let {lane, onAddTask, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
 
-    return connectDragSource(connectDropTarget(
+    return connectDropTarget(connectDragPreview(
       <div className="lane">
+        {
+          connectDragSource(
+            <div className="lane-drag-source">
+              ................
+            </div>
+          )
+        }
         <div className="lane-header">
           <button type="button"
                   className="add-task"
