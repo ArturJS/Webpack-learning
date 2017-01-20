@@ -4,7 +4,7 @@ import './LanesContainer.scss';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as laneActions from '../../actions/lane-antions';
-import * as noteActions from '../../actions/notes-actions';
+import * as taskActions from '../../actions/tasks-actions';
 import Lanes from './Lanes/Lanes';
 
 import {DragDropContext} from 'react-dnd';
@@ -21,7 +21,7 @@ function mapStateToProps(state, props) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({...laneActions, ...noteActions}, dispatch)
+    actions: bindActionCreators({...laneActions, ...taskActions}, dispatch)
   }
 }
 
@@ -85,7 +85,7 @@ export default class LanesContainer extends Component {
   };
 
   onAdd = () => {
-    this.props.actions.addLane({title: 'New lane'});
+    this.props.actions.addLane();
   };
 
   onDelete = (lane) => {
@@ -99,7 +99,7 @@ export default class LanesContainer extends Component {
   };
 
   onAddTask = (lane) => {
-    this.props.actions.addNote({task: 'New task'}, lane.id);
+    this.props.actions.addTask({task: 'New task'}, lane.id);
   };
 
 }

@@ -5,7 +5,7 @@ import './Lane.scss';
 import ItemTypes from './ItemTypes';
 import {DragSource, DropTarget} from 'react-dnd';
 
-import NotesContainer from '../../NotesContainer/NotesContainer';
+import TasksContainer from '../../TasksContainer/TasksContainer';
 
 import {findDOMNode} from 'react-dom';
 
@@ -69,7 +69,7 @@ const laneTarget = {
     // Time to actually perform the action
     props.onMoveLane(dragIndex, hoverIndex);
 
-    // Note: we're mutating the monitor item here!
+    // Task: we're mutating the monitor item here!
     // Generally it's better to avoid mutations,
     // but it's good here for the sake of performance
     // to avoid expensive index searches.
@@ -138,7 +138,7 @@ export default class Lane extends Component {
           </div>
         </div>
         <div className="lane-body">
-          <NotesContainer laneId={lane.id}/>
+          <TasksContainer laneId={lane.id}/>
         </div>
       </div>
     ));
