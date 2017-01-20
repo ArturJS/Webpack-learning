@@ -1,14 +1,11 @@
 import * as types from './action-types';
 import uuid from 'node-uuid';
-import store from '../store';
 
 export const addLane = (lane) => {
-  let {lanesList} = store.getState();
-
   return {
     type: types.ADD_LANE,
     lane: Object.assign({}, {
-      title: `New Lane ${lanesList.length + 1}`,
+      title: `New Lane`,
       id: uuid.v4()
     }, lane)
   };

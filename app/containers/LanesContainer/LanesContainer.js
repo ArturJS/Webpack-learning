@@ -15,7 +15,8 @@ import update from 'react/lib/update';
 
 function mapStateToProps(state, props) {
   return {
-    lanesList: state.lanesList
+    lanesList: state.lanesList,
+    tasksList: state.tasksList
   };
 }
 
@@ -85,7 +86,9 @@ export default class LanesContainer extends Component {
   };
 
   onAdd = () => {
-    this.props.actions.addLane();
+    const { lanesList } = this.state;
+
+    this.props.actions.addLane({title: `New Lane ${lanesList.length + 1}`});
   };
 
   onDelete = (lane) => {
@@ -99,7 +102,11 @@ export default class LanesContainer extends Component {
   };
 
   onAddTask = (lane) => {
-    this.props.actions.addTask({task: 'New task'}, lane.id);
+    const { tasksList, actions } = this.props;
+    const laneId = lane.id;
+    const orderNumber = tasksList.filter(task => task.laneId === laneId).length;
+
+    actions.addTask({task: 'New task'}, laneId, orderNumber);
   };
 
 }

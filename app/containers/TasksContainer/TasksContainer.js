@@ -36,7 +36,9 @@ export default class TasksContainer extends React.Component {
   render() {
     let {tasksList, laneId} = this.props;
 
-    tasksList = tasksList.filter(task => task.laneId === laneId);
+    tasksList = tasksList
+      .filter(task => task.laneId === laneId)
+      .sort((t1, t2) => t1.orderNumber - t2.orderNumber);
 
     return (
       <Tasks tasks={tasksList}
