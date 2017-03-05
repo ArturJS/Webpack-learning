@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "6.23.0",
     "lodash": "4.17.4",
     "node-uuid": "1.4.7",
     "react": "15.4.1",

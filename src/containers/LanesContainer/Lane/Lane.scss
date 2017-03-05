@@ -1,13 +1,18 @@
 .lane {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
   background-color: #FFFFFF;
   width: 200px;
   margin: 20px;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  max-width: 450px;
+  flex-grow: 1;
 
   &-drag-source {
     cursor: move;
     height: 30px;
+    min-height: 30px;
     font-size: 30px;
     color: #FFFFFF;
     background-color: rgba(0, 0, 0, 0.5);
@@ -45,5 +50,10 @@
 
   &-title {
     flex-grow: 1;
+  }
+
+  &-body {
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }

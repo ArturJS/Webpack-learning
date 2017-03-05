@@ -1,3 +1,6 @@
 .lanes-list {
-  white-space: normal;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  width: 100%;
 }
